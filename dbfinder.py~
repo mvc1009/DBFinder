@@ -44,7 +44,7 @@ import sys, os
 try:
 	import argparse
 except:
-	print('[!] argparse is not installed. Try "pip install argparse"')
+	print('[!] argparse is not installed. Try "pip install argparse')
 	sys.exit(0)
 
 try:
@@ -78,14 +78,19 @@ def banner():
 	print('\n\n')
 
 def listHosts(file):
-	f=open(file, 'r')
-	hosts = f.read().split()
-	list_of_hosts = ''
-	for i in hosts:
-    		list_of_hosts += i +',';
-	list_of_hosts = list_of_hosts[:-1]
-	print(' - List of Hosts to scan: ' + list_of_hosts)
-	return hosts
+	try:
+		f=open(file, 'r')
+		hosts = f.read().split()
+		list_of_hosts = ''
+		for i in hosts:
+				list_of_hosts += i +',';
+		list_of_hosts = list_of_hosts[:-1]
+		f.close()
+		print(' - List of Hosts to scan: ' + list_of_hosts)
+		return hosts
+	except:
+		print('[!] File not found"')
+		sys.exit(0)	
 
 
 def main():
@@ -110,7 +115,7 @@ def main():
 	#Presentation
 	banner()
 	if args.color:
-		print(BLUE + ' - Start searching for DataBases:' + RESET)
+		print(RED + '[!] Start searching for DataBases:' + RESET)
 	else:
 		print('[!] Start searching for DataBases:')
   	#Usage
@@ -139,13 +144,16 @@ def main():
 	if args.host or args.list:
 		if args.host:
 			list_of_hosts=[args.host]
-			print('Host to scan: ' + args.host)
 		else:
 			list_of_hosts = listHosts(args.list)
 		print('\n')
 		nmScan = nmap.PortScanner()
 		for host in list_of_hosts:
 			nmScan.scan(host,db_ports, arguments='-sS' + nmap_arguments)
+			if args.color:
+				print(BLUE + '[-] Host to scan: ' + host + RESET)
+			else:
+				print('[-] Host to scan: ' + host)
 			for host_up in nmScan.all_hosts():
 				if args.verbose:
 					if args.color:
@@ -162,15 +170,28 @@ def main():
 								print('\t[+] Port : %s\t%s' % (port , nmScan[host_up][proto][port]['name']))
 						hasDB = True
 					if hasDB:
-						hosts_with_db.append(host_up)
+						hosts_with_db.append(nmScan[host_up].hostname())
 						if not args.verbose:						
-							print(host_up)	
-		
+							print(nmScan[host_up].hostname())	
+		if args.verbose:
+			if args.color:
+				print(RED + '[!] Showing final results' + RESET)
+			else:
+				print('[!] Showing final results')
+			for host in hosts_with_db:
+				print(host)
 		if args.file:
+			if args.verbose:
+				if args.color:
+					print(RED + '[!] Writing results to a file' + RESET)
+				else:
+					print('[!] Writing results to a file')
 			out = open(args.file, 'w+')
 			if len(hosts_with_db) > 0:
 				for host in hosts_with_db:
 					out.write(host)
+				out.write('\n')
+				out.close()
 try:
 	if __name__ == "__main__":
 		main()
