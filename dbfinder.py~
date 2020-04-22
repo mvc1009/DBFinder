@@ -63,17 +63,6 @@ def banner():
 	print('\n\n')
 
 
-def listHosts():
-	f=open('list.txt', 'r')
-	hosts = f.read().split()
-	list_of_hosts = ''
-	for i in hosts:
-    		list_of_hosts += i +',';
-	list_of_hosts = list_of_hosts[:-1]
-	print('List of Hosts to scan: ' + list_of_hosts)
-	return hosts
-
-
 def main():
 	#Presentation
 	banner()
@@ -82,7 +71,7 @@ def main():
 	parser = argparse.ArgumentParser(description='DBFinder is used for discovering DB with public visibility')
 	parser.add_argument('-v', '--verbose', action='store_true', help='Turn verbose output on')
 	parser.add_argument('-i', '--ids-evasion', action='store_true', help='Turn NMAP to T1 in order to evade IDS protection')
-	parser.add_argument('-F', '--fast', action='store_true', help='Turn NMAP to T4 in order to reduce timeouts and search for common databases')
+	parser.add_argument('-F', '--fast', action='store_true', help='Turn NMAP to T4 in order to reduce timeouts')
 	parser.add_argument('-l', '--host', action='store', dest='host', help='Target Host', type=str)
 	parser.add_argument('-L', '--list-hosts', action='store', dest='list', help='List of target hosts', type=str)
 	parser.add_argument('-o', '--output', action='store', dest='file', help='Write results to a file', type=str)
@@ -95,10 +84,7 @@ def main():
 		parser.print_help()
 
 	#Program
-	if args.fast:
-		print("fast")
-	db_knownports = '7210,3306,1521,1830,5432,1433,1434,8529,7000,7001,9042,5984,9200,9300,27017,27018,27019,28017,7473,7474,6379,8087,8089,8080,28015,29015,7574,8983'
-
+	
 
 
 try:
