@@ -52,8 +52,16 @@ try:
 except:
 	print('[!] nmap is not installed. Try "pip install python-nmap"')
 	sys.exit(0)
-
-
+#CONSTANTS
+BLACK = '\u001b[30m'
+RED = '\u001b[31m'
+GREEN = '\u001b[32m'
+YELLOW = '\u001b[33m'
+BLUE = '\u001b[34m'
+MAGENTA = '\u001b[35m'
+CYAN = '\u001b[36m'
+WHITE = '\u001b[37m'
+RESET = '\u001b[0m'
 
 # Display DBFinder Banner
 def banner():
@@ -69,16 +77,6 @@ def banner():
 	print("\t\t\t\t\t\t\t\tBy: @mvc1009")
 	print('\n\n')
 
-def dbprint(args, nmScan):
-	for host_up in nmScan.all_hosts():
-		if args.verbose:
-			print('[+] Host up %s\t(%s)' % (host_up, nmScan[host_up].hostname()))
-		for proto in nmScan[host_up].all_protocols():
-			lport = nmScan[host_up][proto].keys()
-			for port in lport:
-				if args.verbose:
-					print('\t[+] Port : %s\t%s' % (port , nmScan[host_up][proto][port]['name']))
-
 def listHosts(file):
 	f=open(file, 'r')
 	hosts = f.read().split()
@@ -86,13 +84,13 @@ def listHosts(file):
 	for i in hosts:
     		list_of_hosts += i +',';
 	list_of_hosts = list_of_hosts[:-1]
-	print('List of Hosts to scan: ' + list_of_hosts)
+	f.close()
+	print(' - List of Hosts to scan: ' + list_of_hosts)
 	return hosts
 
 
 def main():
-	#Presentation
-	banner()
+
 
 	# Parsing arguments
 	parser = argparse.ArgumentParser(description='DBFinder is used for discovering DB with public visibility.\n\t\t\n Example: $ python3 dbfinder.py -l www.example.com -m -c -o example_databases.txt', epilog='Thanks for using me!')
@@ -110,12 +108,19 @@ def main():
 	global args
 	args =  parser.parse_args()
 
+	#Presentation
+	banner()
+	if args.color:
+		print(BLUE + ' - Start searching for DataBases:' + RESET)
+	else:
+		print('[!] Start searching for DataBases:')
   	#Usage
 	if len(sys.argv) < 2:
 		parser.print_help()
 
 	#Program
 	nmap_arguments = ''
+	hosts_with_db = list()
 		#MODE: most_common
 	if args.most_common:
 		print('[!] MOST COMMON mode turned on')
@@ -135,13 +140,40 @@ def main():
 	if args.host or args.list:
 		if args.host:
 			list_of_hosts=[args.host]
+			print('Host to scan: ' + args.host)
 		else:
 			list_of_hosts = listHosts(args.list)
+		print('\n')
 		nmScan = nmap.PortScanner()
 		for host in list_of_hosts:
 			nmScan.scan(host,db_ports, arguments='-sS' + nmap_arguments)
-			dbprint(args, nmScan)
-
+			for host_up in nmScan.all_hosts():
+				if args.verbose:
+					if args.color:
+						print(GREEN + '[+] Host up ' + host_up + '\t(' + nmScan[host_up].hostname()+ ')' + RESET)
+					else:
+						print('[+] Host up %s\t(%s)' % (host_up, nmScan[host_up].hostname()))
+				for proto in nmScan[host_up].all_protocols():
+					lport = nmScan[host_up][proto].keys()
+					for port in lport:
+						if args.verbose:
+							if args.color:
+								print(YELLOW + '\t[+] Port : ' + str(port) + RESET + '\t' + nmScan[host_up][proto][port]['name'] )
+							else:
+								print('\t[+] Port : %s\t%s' % (port , nmScan[host_up][proto][port]['name']))
+						hasDB = True
+					if hasDB:
+						hosts_with_db.append(host_up)
+						if not args.verbose:						
+							print(host_up)	
+		
+		if args.file:
+			out = open(args.file, 'w+')
+			if len(hosts_with_db) > 0:
+				for host in hosts_with_db:
+					out.write(host)
+				out.write('\n')
+				out.close()
 try:
 	if __name__ == "__main__":
 		main()
