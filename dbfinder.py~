@@ -70,7 +70,14 @@ def banner():
 	print('\n\n')
 
 def dbprint(args, nmScan, method):
-	print('test')
+	for host_up in nmScan.all_hosts():
+		if args.verbose:
+			print('[+] Host up %s\t(%s)' % (host_up, nmScan[host_up].hostname()))
+		for proto in nmScan[host_up].all_protocols():
+			lport = nmScan[host_up][proto].keys()
+			for port in lport:
+				if args.verbose:
+					print('\t[+] Port : %s\t%s' % (port , nmScan[host_up][proto][port]['name']))
 
 def listHosts(file):
 	f=open(file, 'r')
@@ -112,7 +119,7 @@ def main():
 		#MODE: most_common
 	if args.most_common:
 		print('[!] MOST COMMON mode turned on')
-		db_ports = '3306,1521,1830,1433,1434,7000,7001,27017,27018,27019,28017,7474,7473'
+		db_ports = '3306,1521,1830,1433,1434,7000,7001,27017,27018,27019,28017,7473,7474'
 	else:
 		db_ports = '7210,3306,1521,1830,5432,1433,1434,8529,7000,7001,9042,5984,9200,9300,27017,27018,27019,28017,7473,7474,6379,8087,8089,8080,28015,29015,7574,8983'
 		
@@ -127,19 +134,13 @@ def main():
 	
 	if args.host or args.list:
 		if args.host:
-			a = list()
-			list_of_hosts = a.append(args.host)
+			list_of_hosts=[args.host]
 		else:
 			list_of_hosts = listHosts(args.list)
 		nmScan = nmap.PortScanner()
 		for host in list_of_hosts:
 			nmScan.scan(host,db_ports, arguments='-sS' + nmap_arguments)
-			for host_up in nmScan.all_hosts():
-				print('[+] Host up %s\t(%s)' % (host_up, nmScan[host_up].hostname()))
-				for proto in nmScan[host_up].all_protocols():
-					lport = nmScan[host_up][proto].keys()
-					for port in lport:
-						print('\t[+] Port : %s\t%s' % (port , nmScan[host_up][proto][port]['name']))
+			dbprint(args, nmScan)
 
 try:
 	if __name__ == "__main__":
