@@ -1,10 +1,11 @@
 # DBFinder
 DBFinder is a useful reconnaissance Red Team tool used for discovering databases through the internet.
 
->This tools is made for educational purpose!
->A bad usage of this tool is not allowed...
+>This tools is made for educational purpose!  A bad usage of this tool is not allowed...
 
-![Alt Text](src/banner_dbfinder.png "Banner of DBFinder")
+<p align="center">
+<img src="src/banner_dbfinder.png">
+</p>
 
 ## Description & Purpose
 A Database is an organized collection of data, generally stored and accessed electronicall from a computer system. Sometimes have sensible or confidential data.
@@ -38,3 +39,9 @@ optional arguments:
   -c, --color           Colorize DBFinder output
 
 ```
+
+## Requirements
+
+Phython 3.7 or higher is needed. Some python packages are needed such us `nmap` and `argparse`.
+
+Theres no more requirements, all required packages are inside `requierements.txt`
