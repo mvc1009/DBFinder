@@ -14,7 +14,10 @@ For a Red Team it is important to know how to locate the databases for future ho
 
 *DBFinder does NOT HACK or OBTAIN ANY TYPE OF DATA from the discovered databases*, this tool only enumerate and localize the databases that have public visibility through the internet.
 
-![Alt Text](https://media.giphy.com/media/jsGtdrPxhAuGLBBNRa/giphy.gif)
+<p align="center">
+<img src="https://media.giphy.com/media/jsGtdrPxhAuGLBBNRa/giphy.gif">
+</p>
+
 
 ## Help
 
@@ -40,8 +43,22 @@ optional arguments:
 
 ```
 
+
 ## Requirements
 
 Phython 3.7 or higher is needed. Some python packages are needed such us `nmap` and `argparse`.
 
 Theres no more requirements, all required packages are inside `requierements.txt`
+
+
+## Installation
+
+1. Download my repo:
+`$ git clone https://github.com/mvc1009/DBFinder.git`
+2. Install the dependencies:
+`$ pip install -r requirements.txt`
+3. Use:
+`$ python3 dbfinder.py -l www.example.xom -m -cv -o example_databases.txt
+
+
+>If this installation does not work, try to install nmap  `$ sudo apt-get install nmap`
