@@ -2,7 +2,7 @@
 DBFinder is a useful reconnaissance Red Team tool used for discovering databases through the internet.
 
 
-
+```
 :::::::-.  :::::::.  .-:::::'::::::.    :::.:::::::-.  .,:::::: :::::::..  
  ;;,   `';, ;;;'';;' ;;;'''' ;;;`;;;;,  `;;; ;;,   `';,;;;;'''' ;;;;``;;;;  
  `[[     [[ [[[__[[\.[[[,,== [[[  [[[[[. '[[ `[[     [[ [[cccc   [[[,/[[['  
@@ -14,7 +14,7 @@ DBFinder is a useful reconnaissance Red Team tool used for discovering databases
                                                                 Version 0.1
                                                                 By: @mvc1009
 
-
+```
 ## Description & Purpose
 A Database is an organized collection of data, generally stored and accessed electronicall from a computer system. Sometimes have sensible or confidential data.
 
@@ -26,7 +26,7 @@ For a Red Team it is important to know how to locate the databases for future ho
 
 ## Help
 
-'''
+```
 usage: dbfinder.py [-h] [-v] [-i | -f] [-l HOST | -L LIST] [-m] [-o FILE] [-c]
 
 DBFinder is used for discovering DB with public visibility. Example: $ python3
@@ -46,4 +46,4 @@ optional arguments:
                         Write results to a file
   -c, --color           Colorize DBFinder output
 
-'''
+```
