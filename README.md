@@ -1,20 +1,7 @@
 # DBFinder
 DBFinder is a useful reconnaissance Red Team tool used for discovering databases through the internet.
 
-
-```
-:::::::-.  :::::::.  .-:::::'::::::.    :::.:::::::-.  .,:::::: :::::::..  
- ;;,   `';, ;;;'';;' ;;;'''' ;;;`;;;;,  `;;; ;;,   `';,;;;;'''' ;;;;``;;;;  
- `[[     [[ [[[__[[\.[[[,,== [[[  [[[[[. '[[ `[[     [[ [[cccc   [[[,/[[['  
-  $$,    $$ $$""""Y$$`$$$"`` $$$  $$$ "Y$c$$  $$,    $$ $$""""   $$$$$$c    
-  888_,o8P'_88o,,od8P 888    888  888    Y88  888_,o8P' 888oo,__ 888b "88bo,
-  MMMMP"`  ""YUMMMP"  "MM,   MMM  MMM     YM  MMMMP"`   """"YUMMMMMMM   "W" 
-
-
-                                                                Version 0.1
-                                                                By: @mvc1009
-
-```
+![Alt Text](src/banner_dbfinder.png "Banner of DBFinder")
 ## Description & Purpose
 A Database is an organized collection of data, generally stored and accessed electronicall from a computer system. Sometimes have sensible or confidential data.
 
