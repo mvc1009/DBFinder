@@ -56,12 +56,14 @@ Theres no more requirements, all required packages are inside `requierements.txt
 1. Download my repo:
 
 `$ git clone https://github.com/mvc1009/DBFinder.git`
+
 2. Install the dependencies:
 
 `$ pip install -r requirements.txt`
+
 3. Use:
 
-`$ python3 dbfinder.py -l www.example.xom -m -cv -o example_databases.txt
+`$ python3 dbfinder.py -l www.example.xom -m -cv -o example_databases.txt`
 
 
 >If this installation does not work, try to install nmap  `$ sudo apt-get install nmap`
