@@ -90,7 +90,8 @@ def listHosts(file):
 				list_of_hosts += i +',';
 		list_of_hosts = list_of_hosts[:-1]
 		f.close()
-		print(' - List of Hosts to scan: ' + list_of_hosts)
+		print('\n')
+		print('[+] List of Hosts to scan: ' + list_of_hosts)
 		return hosts
 	except:
 		print('[!] File not found"')
@@ -142,7 +143,7 @@ def main():
 		db_ports = '7210,3306,1521,1830,5432,1433,1434,8529,7000,7001,9042,5984,9200,9300,27017,27018,27019,28017,7473,7474,6379,8087,8089,8080,28015,29015'
 	else:
 		db_ports = '23,83,2382,3050,3351,1583,137,138,139,4022,7022,7210,3306,1521,1830,5432,1433,1434,8529,7000,7001,9042,5984,9200,9300,27017,27018,27019,28017,7473,7474,6379,8087,8089,8080,28015,29015,7574,8983,33060,33061,33062,6446,6447,6448,6449,389,11211'
-	print('[+] Looking for the following ports: ')
+	print('[+] Looking for the following ports:')
 	print('\t' + db_ports)		
 
 		#MODE: fast
