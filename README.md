@@ -1,7 +1,7 @@
 # DBFinder
 DBFinder is a useful reconnaissance Red Team tool used for discovering databases through the internet.
 
->This tools is made for educational purpose!  A bad usage of this tool is not allowed...
+>This tool is made for educational purpose!  A bad usage of this tool is not allowed...
 
 <p align="center">
 <img src="src/banner_dbfinder.png">
