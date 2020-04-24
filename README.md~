@@ -14,7 +14,7 @@ For a Red Team it is important to know how to locate the databases for future ho
 
 **DBFinder** does **NOT HACK** or **OBTAIN ANY TYPE OF DATA** from the discovered databases, this tool only enumerate and localize the databases that have public visibility through the internet.
 
-DBFinder uses nmap API to discover databases.
+*DBFinder* uses nmap API to discover databases.
 <p align="center">
 <img src="https://media.giphy.com/media/jsGtdrPxhAuGLBBNRa/giphy.gif">
 </p>
