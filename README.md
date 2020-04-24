@@ -29,9 +29,9 @@ Actually DBFinder search for the following ports:
 	MySQL:				3306,33060,33061,33062,6446,6447,6448,6449,389
 	OracleDB:			1521,1830
 	PostgreSQL:			5432
-	SQL Server (MSSQL):	1433,1434,2383,2382
+	SQL Server (MSSQL):		1433,1434,2383,2382
 	Firebird:			3050
-	Pervasive SQL:		3351,1583,137,138,139
+	Pervasive SQL:			3351,1583,137,138,139
 	Others:				4022,7022
 	InnoDB:				11211
 
@@ -39,7 +39,7 @@ Actually DBFinder search for the following ports:
 	ArangoDB: 			8529
 	Cassandra: 			7000,7001,9042
 	CouchDB:			5984 
-	Elasticsearch:		9200,9300
+	Elasticsearch:			9200,9300
 	MongoDB:			27017,27018,27019,28017
 	Neo4J:				7473,7474
 	Redis:				6379
